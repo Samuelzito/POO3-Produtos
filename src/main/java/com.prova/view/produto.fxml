@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.prova.controller.ProdutoRelatorioViewController">
+
+    <left>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Cadastro de Produto" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <TextField fx:id="txtCodigo" promptText="Código (8 caracteres)" />
+            <TextField fx:id="txtNome" promptText="Nome do Produto" />
+            <TextField fx:id="txtDescricao" promptText="Descrição" />
+            <DatePicker fx:id="dpFabricacao" promptText="Data de Fabricação" />
+            <DatePicker fx:id="dpValidade" promptText="Data de Validade" />
+            <TextField fx:id="txtPrecoCompra" promptText="Preço de Compra" />
+            <TextField fx:id="txtPrecoVenda" promptText="Preço de Venda" />
+            <TextField fx:id="txtQuantidade" promptText="Quantidade em Estoque" />
+
+            <Label text="Categoria:" />
+            <TextField fx:id="txtCategoriaId" promptText="ID" />
+            <TextField fx:id="txtCategoriaNome" promptText="Nome" />
+            <TextField fx:id="txtCategoriaDesc" promptText="Descrição" />
+            <TextField fx:id="txtCategoriaSetor" promptText="Setor" />
+
+            <HBox spacing="10">
+                <Button text="Novo" onAction="#onNovo" />
+                <Button text="Salvar" onAction="#onSalvar" />
+                <Button text="Excluir" onAction="#onExcluir" />
+            </HBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Label text="Produtos Cadastrados" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <TableView fx:id="tabelaProdutos">
+                <columns>
+                    <TableColumn fx:id="colCodigo" text="Código" />
+                    <TableColumn fx:id="colNome" text="Nome" />
+                    <TableColumn fx:id="colPreco" text="Preço Venda" />
+                    <TableColumn fx:id="colEstoque" text="Estoque" />
+                    <TableColumn fx:id="colCategoria" text="Categoria" />
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" bottom="10" left="15" right="15"/>
+            </padding>
+
+            <Button text="Próx. Vencimento" onAction="#onRelatorioVencimento"/>
+            <Button text="Estoque Baixo" onAction="#onRelatorioEstoqueBaixo"/>
+            <Button text="Lucro Médio" onAction="#onRelatorioMargemLucro"/>
+            <Button text="Por Setor" onAction="#onRelatorioPorSetor"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
