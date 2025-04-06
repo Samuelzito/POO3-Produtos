@@ -1,0 +1,128 @@
+/* Variáveis de Cores - Personalizáveis */
+.root {
+    -fx-primary-bg-color: #f5f7fa;       /* Cor de fundo principal */
+    -fx-secondary-bg-color: #ffffff;     /* Cor de fundo secundária */
+    -fx-footer-bg-color: #f0f0f0;        /* Cor de fundo do rodapé */
+    -fx-primary-text-color: #2c3e50;     /* Cor de texto principal */
+    -fx-secondary-text-color: #34495e;   /* Cor de texto secundária */
+    -fx-accent-color: #3498db;           /* Cor de destaque/links */
+    -fx-success-color: #4CAF50;          /* Cor para ações positivas */
+    -fx-danger-color: #f44336;           /* Cor para ações negativas */
+}
+
+/* Aplicação das cores */
+.root {
+    -fx-background-color: -fx-primary-bg-color;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-size: 14px;
+}
+
+/* Títulos e Textos */
+.label {
+    -fx-text-fill: -fx-primary-text-color;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-primary-text-color;
+}
+
+/* Painéis e Containers */
+.left, .center {
+    -fx-background-color: -fx-secondary-bg-color;
+    -fx-padding: 20px;
+}
+
+.bottom {
+    -fx-background-color: -fx-footer-bg-color;
+    -fx-padding: 15px;
+}
+
+/* CSS para Tabela Padrão */
+.table-view {
+    -fx-background-color: white;          /* Fundo branco */
+    -fx-border-color: #e0e0e0;            /* Borda cinza claro */
+    -fx-border-width: 1px;
+}
+
+/* Cabeçalho da Tabela */
+.table-view .column-header-background {
+    -fx-background-color: white;          /* Fundo branco */
+    -fx-border-color: #e0e0e0;            /* Borda cinza claro */
+    -fx-border-width: 0 0 1px 0;          /* Borda apenas na parte inferior */
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;    /* Sem cor de fundo */
+    -fx-text-fill: black;                 /* Texto preto */
+    -fx-font-weight: bold;                /* Negrito */
+    -fx-border-color: transparent;        /* Sem bordas */
+    -fx-padding: 8px 10px;                /* Espaçamento interno */
+}
+
+/* Linhas da Tabela */
+.table-row-cell {
+    -fx-background-color: white;          /* Fundo branco */
+    -fx-border-color: #f0f0f0;            /* Linhas divisórias cinza muito claro */
+    -fx-border-width: 0 0 1px 0;          /* Borda apenas na parte inferior */
+}
+
+/* Linha selecionada */
+.table-row-cell:selected {
+    -fx-background-color: #f5f5f5;        /* Fundo cinza muito claro quando selecionado */
+    -fx-text-fill: black;                 /* Texto preto */
+}
+
+/* Células da Tabela */
+.table-cell {
+    -fx-text-fill: black;                 /* Texto preto */
+    -fx-padding: 8px 10px;                /* Espaçamento interno */
+    -fx-alignment: CENTER_LEFT;           /* Alinhamento do texto */
+    -fx-border-color: transparent;        /* Sem bordas */
+}
+
+/* Linhas alternadas (opcional) */
+.table-row-cell:even {
+    -fx-background-color: #fafafa;        /* Fundo cinza muito claro para linhas pares */
+}
+
+/* Efeito hover */
+.table-row-cell:hover {
+    -fx-background-color: #f0f0f0;        /* Fundo cinza claro ao passar o mouse */
+}
+
+/* Botões */
+.button {
+    -fx-background-color: -fx-accent-color;
+    -fx-text-fill: white;
+    -fx-pref-width: 80px;
+}
+
+.button-success {
+    -fx-background-color: -fx-success-color;
+    -fx-text-fill: white;
+}
+
+.button-danger {
+    -fx-background-color: -fx-danger-color;
+    -fx-text-fill: white;
+}
+
+/* Campos de Entrada */
+.text-field, .date-picker {
+    -fx-background-color: white;
+    -fx-text-fill: -fx-primary-text-color;
+    -fx-border-color: #d5dbdb;
+}
+
+/* Efeitos de Hover */
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+/* Ajustes específicos para o layout */
+#txtCategoriaSetor {
+    -fx-text-fill: -fx-secondary-text-color;
+    -fx-font-style: italic;
+}

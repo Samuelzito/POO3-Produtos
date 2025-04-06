@@ -1,74 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.prova.controller.ProdutoRelatorioViewController">
+<BorderPane prefHeight="555.0" prefWidth="1060.0" styleClass="border-pane" stylesheets="@/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.prova.controller.ProdutoRelatorioViewController">
 
+    <!-- Menu Superior Moderno -->
+    <top>
+        <MenuBar prefHeight="2.0" prefWidth="1060.0" styleClass="shadow-effect">
+            <Menu text="Relatórios">
+                <MenuItem onAction="#onRelatorioVencimento" text="Próx. Vencimento" />
+                <MenuItem onAction="#onRelatorioEstoqueBaixo" text="Estoque Baixo" />
+                <MenuItem onAction="#onRelatorioMargemLucro" text="Lucro Médio" />
+                <MenuItem onAction="#onRelatorioPorSetor" text="Por Setor" />
+            </Menu>
+            <Menu text="Ferramentas">
+                <MenuItem text="Configurações" />
+                <MenuItem text="Ajuda" />
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <!-- Lado esquerdo - Formulário em Card -->
     <left>
-        <VBox spacing="10">
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
+        <VBox prefHeight="497.0" prefWidth="393.0" spacing="15" style="-fx-background-color: c0c0c0; -fx-padding: 20; -fx-background-radius: 5;" styleClass="shadow-effect">
+            <Label style="-fx-font-size: 18px;" styleClass="section-title" text="CADASTRO DE PRODUTO" />
 
-            <Label text="Cadastro de Produto" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <GridPane hgap="10" vgap="15">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="100" />
+                </columnConstraints>
+            <rowConstraints>
+               <RowConstraints />
+            </rowConstraints>
+            </GridPane>
 
-            <TextField fx:id="txtCodigo" promptText="Código (8 caracteres)" />
-            <TextField fx:id="txtNome" promptText="Nome do Produto" />
-            <TextField fx:id="txtDescricao" promptText="Descrição" />
-            <DatePicker fx:id="dpFabricacao" promptText="Data de Fabricação" />
-            <DatePicker fx:id="dpValidade" promptText="Data de Validade" />
-            <TextField fx:id="txtPrecoCompra" promptText="Preço de Compra" />
-            <TextField fx:id="txtPrecoVenda" promptText="Preço de Venda" />
-            <TextField fx:id="txtQuantidade" promptText="Quantidade em Estoque" />
+             <TextField fx:id="txtCodigo" promptText="Código (8 caracteres)" styleClass="hover-effect" />
+             <TextField fx:id="txtNome" promptText="Nome do Produto" styleClass="hover-effect" />
+             <TextField fx:id="txtDescricao" promptText="Descrição" styleClass="hover-effect" />
 
-            <Label text="Categoria:" />
-            <TextField fx:id="txtCategoriaId" promptText="ID" />
-            <TextField fx:id="txtCategoriaNome" promptText="Nome" />
-            <TextField fx:id="txtCategoriaDesc" promptText="Descrição" />
-            <TextField fx:id="txtCategoriaSetor" promptText="Setor" />
+             <HBox spacing="10">
+                 <DatePicker fx:id="dpFabricacao" promptText="Fabricação" style="-fx-pref-width: 150;" />
+                 <DatePicker fx:id="dpValidade" promptText="Validade" style="-fx-pref-width: 150;" />
+             </HBox>
 
-            <HBox spacing="10">
-                <Button text="Novo" onAction="#onNovo" />
-                <Button text="Salvar" onAction="#onSalvar" />
-                <Button text="Excluir" onAction="#onExcluir" />
-            </HBox>
+             <HBox spacing="10">
+                 <TextField fx:id="txtPrecoCompra" promptText="Preço Compra" style="-fx-pref-width: 150;" />
+
+                   <TextField fx:id="txtCategoriaId" promptText="ID da Categoria" />
+                 <TextField fx:id="txtPrecoVenda" promptText="Preço Venda" style="-fx-pref-width: 150;" />
+             </HBox>
+
+             <Label style="-fx-font-size: 16px; -fx-padding: 10 0 5 0;" styleClass="section-title" text="CATEGORIA" />
+             <TextField fx:id="txtCategoriaNome" promptText="Nome da Categoria" />
+
+             <TextField fx:id="txtQuantidade" promptText="Quantidade em Estoque" />
+             <TextField fx:id="txtCategoriaDesc" promptText="Descrição da Categoria" />
+             <TextField fx:id="txtCategoriaSetor" promptText="Setor da Categoria" />
         </VBox>
     </left>
 
+    <!-- Centro - Tabela de Produtos em Card -->
     <center>
-        <VBox spacing="10">
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
+        <VBox prefHeight="497.0" prefWidth="0.0" spacing="15" style="-fx-padding: 20; -fx-background-color: c0c0c0;">
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label style="-fx-font-size: 18px;" styleClass="section-title" text="PRODUTOS CADASTRADOS" />
+                <Button style="-fx-font-size: 12px; -fx-padding: 5 10;" text="Atualizar" />
+            </HBox>
 
-            <Label text="Produtos Cadastrados" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
-
-            <TableView fx:id="tabelaProdutos">
+            <TableView fx:id="tabelaProdutos" prefHeight="357.0" prefWidth="515.0" style="-fx-background-radius: 5;" styleClass="shadow-effect">
                 <columns>
-                    <TableColumn fx:id="colCodigo" text="Código" />
-                    <TableColumn fx:id="colNome" text="Nome" />
-                    <TableColumn fx:id="colPreco" text="Preço Venda" />
-                    <TableColumn fx:id="colEstoque" text="Estoque" />
-                    <TableColumn fx:id="colCategoria" text="Categoria" />
+                    <TableColumn fx:id="colCodigo" style="-fx-alignment: CENTER;" text="CÓDIGO" />
+                    <TableColumn fx:id="colNome" style="-fx-alignment: CENTER_LEFT; -fx-pref-width: 200;" text="NOME" />
+                    <TableColumn fx:id="colPreco" style="-fx-alignment: CENTER_RIGHT;" text="PREÇO VENDA" />
+                    <TableColumn fx:id="colEstoque" style="-fx-alignment: CENTER;" text="ESTOQUE" />
+                    <TableColumn fx:id="colCategoria" style="-fx-alignment: CENTER_LEFT; -fx-pref-width: 150;" text="CATEGORIA" />
                 </columns>
             </TableView>
+
+            <HBox alignment="CENTER_RIGHT" spacing="5" style="-fx-padding: 5 0 0 0;">
+                <Label text="Total de produtos em estoque" />
+                <Label fx:id="lblTotalProdutos" text="0" /> <!-- Alterado para fx:id -->
+            </HBox>
         </VBox>
     </center>
 
+    <!-- Rodapé - Barra de Ações -->
     <bottom>
-        <HBox spacing="10" alignment="CENTER">
-            <padding>
-                <Insets top="10" bottom="10" left="15" right="15"/>
-            </padding>
-
-            <Button text="Próx. Vencimento" onAction="#onRelatorioVencimento"/>
-            <Button text="Estoque Baixo" onAction="#onRelatorioEstoqueBaixo"/>
-            <Button text="Lucro Médio" onAction="#onRelatorioMargemLucro"/>
-            <Button text="Por Setor" onAction="#onRelatorioPorSetor"/>
+        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="1060.0" spacing="20" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Button onAction="#onNovo" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50;" text="Novo" />
+            <Button onAction="#onSalvar" style="-fx-background-color: #27ae60; -fx-text-fill: white;" text="Salvar" />
+            <Button onAction="#onExcluir" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Excluir" />
+            <Button style="-fx-background-color: #95a5a6; -fx-text-fill: white;" text="Limpar" />
         </HBox>
     </bottom>
-
 </BorderPane>

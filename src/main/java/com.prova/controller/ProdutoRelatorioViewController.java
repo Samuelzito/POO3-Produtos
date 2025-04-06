@@ -1,6 +1,5 @@
 package com.prova.controller;
 
-
 import com.prova.model.Categoria;
 import com.prova.model.Produto;
 import com.prova.utils.RelatorioProduto;
@@ -40,6 +39,8 @@ public class ProdutoRelatorioViewController {
     @FXML private TableColumn<Produto, Integer> colEstoque;
     @FXML private TableColumn<Produto, String> colCategoria;
 
+    @FXML private Label lblTotalProdutos;  // Referência ao Label de contador de produtos
+
     private ProdutoController produtoController;
     private ObservableList<Produto> listaProdutos;
 
@@ -61,6 +62,14 @@ public class ProdutoRelatorioViewController {
         tabelaProdutos.getSelectionModel().selectedItemProperty().addListener(
                 (obs, antigo, novo) -> preencherFormulario(novo)
         );
+    }
+
+    // Método para atualizar o total de unidades em estoque
+    private void atualizarTotalEstoque() {
+        int totalEstoque = listaProdutos.stream()
+                .mapToInt(Produto::getQuantidadeEstoque)  // Soma todas as quantidades de estoque
+                .sum();
+        lblTotalProdutos.setText(": " + totalEstoque);  // Atualiza o Label
     }
 
     @FXML
@@ -96,6 +105,7 @@ public class ProdutoRelatorioViewController {
 
     private void carregarProdutos() {
         listaProdutos.setAll(produtoController.listarProdutos());
+        atualizarTotalEstoque();
     }
 
     private void preencherFormulario(Produto p) {
@@ -150,6 +160,7 @@ public class ProdutoRelatorioViewController {
         txtCategoriaDesc.clear();
         txtCategoriaSetor.clear();
         tabelaProdutos.getSelectionModel().clearSelection();
+        atualizarTotalEstoque();  // Atualiza o contador ao limpar
     }
 
     private void mostrarAlerta(Alert.AlertType tipo, String mensagem) {
@@ -160,10 +171,7 @@ public class ProdutoRelatorioViewController {
         alerta.showAndWait();
     }
 
-
     // ---------------- RELATÓRIOS ----------------
-
-
 
     @FXML
     public void onRelatorioVencimento() {
@@ -217,4 +225,3 @@ public class ProdutoRelatorioViewController {
         mostrarAlerta(Alert.AlertType.INFORMATION, msg.toString());
     }
 }
-

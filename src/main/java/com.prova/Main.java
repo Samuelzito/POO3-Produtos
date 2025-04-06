@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = PathFXML.loadFXML("produto.fxml");
-        Scene scene = new Scene(root, 900, 700);
+        Scene scene = new Scene(root, 1040, 700);
 
         primaryStage.setTitle("Menu Principal");
         primaryStage.setScene(scene);
